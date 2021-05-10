@@ -2,3 +2,26 @@
   <mat-icon>local_fire_department</mat-icon>
   <span>KanbanFire</span>
 </mat-toolbar>
+
+<div class="content-wrapper">
+  <div class="container-wrapper">
+    <div class="container">
+      <h2>Backlog</h2>
+      <mat-card
+        cdkDropList
+        id="todo"
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        (cdkDropListDropped)="drop($event)"
+        [cdkDropListConnectedTo]="[inProgressList, doneList]"
+      >
+        <app-task
+          cdkDrag
+          *ngFor="let task of todo"
+          [task]="task"
+          (edit)="edit('todo', $event)"
+        ></app-task>
+      </mat-card>
+    </div>
+  </div>
+</div>
