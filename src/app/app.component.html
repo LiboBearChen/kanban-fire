@@ -4,6 +4,9 @@
 </mat-toolbar>
 
 <div class="content-wrapper">
+  <button mat-button (click)="newTask()">
+    <mat-icon>add</mat-icon>Add Task
+  </button>
   <div class="container-wrapper">
     <div class="container">
       <h2>Backlog</h2>
@@ -16,12 +19,7 @@
         [cdkDropListConnectedTo]="[inProgressList, doneList]"
       >
         <p class="empty-label" *ngIf="todo.length === 0">Emtpy list</p>
-        <app-task
-          cdkDrag
-          *ngFor="let task of todo"
-          [task]="task"
-          (edit)="edit('todo', $event)"
-        ></app-task>
+        <app-task cdkDrag *ngFor="let task of todo" [task]="task"></app-task>
       </mat-card>
     </div>
     <div class="container">
@@ -39,7 +37,6 @@
           cdkDrag
           *ngFor="let task of inProgress"
           [task]="task"
-          (edit)="edit('inProgress', $event)"
         ></app-task>
       </mat-card>
     </div>
@@ -54,12 +51,7 @@
         [cdkDropListConnectedTo]="[todoList, inProgressList]"
       >
         <p class="empty-label" *ngIf="done.length === 0">Emtpy list</p>
-        <app-task
-          cdkDrag
-          *ngFor="let task of done"
-          [task]="task"
-          (edit)="edit('done', $event)"
-        ></app-task>
+        <app-task cdkDrag *ngFor="let task of done" [task]="task"></app-task>
       </mat-card>
     </div>
   </div>
