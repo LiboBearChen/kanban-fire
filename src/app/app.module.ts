@@ -11,6 +11,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [AppComponent, TaskComponent, TaskDialogComponent],
@@ -23,6 +25,8 @@ import { TaskDialogComponent } from './task-dialog/task-dialog.component';
     DragDropModule,
     MatButtonModule,
     MatDialogModule,
+    FormsModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
