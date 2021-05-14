@@ -19,7 +19,12 @@
         [cdkDropListConnectedTo]="[inProgressList, doneList]"
       >
         <p class="empty-label" *ngIf="todo.length === 0">Emtpy list</p>
-        <app-task cdkDrag *ngFor="let task of todo" [task]="task"></app-task>
+        <app-task
+          cdkDrag
+          (edit)="edit('todo', $event)"
+          *ngFor="let task of todo"
+          [task]="task"
+        ></app-task>
       </mat-card>
     </div>
     <div class="container">
@@ -35,6 +40,7 @@
         <p class="empty-label" *ngIf="inProgress.length === 0">Emtpy list</p>
         <app-task
           cdkDrag
+          (edit)="edit('inProgress', $event)"
           *ngFor="let task of inProgress"
           [task]="task"
         ></app-task>
@@ -51,7 +57,12 @@
         [cdkDropListConnectedTo]="[todoList, inProgressList]"
       >
         <p class="empty-label" *ngIf="done.length === 0">Emtpy list</p>
-        <app-task cdkDrag *ngFor="let task of done" [task]="task"></app-task>
+        <app-task
+          cdkDrag
+          (edit)="edit('done', $event)"
+          *ngFor="let task of done"
+          [task]="task"
+        ></app-task>
       </mat-card>
     </div>
   </div>

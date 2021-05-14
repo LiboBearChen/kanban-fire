@@ -45,10 +45,15 @@ export class AppComponent {
     dialogRef.afterClosed().subscribe((result: TaskDialogResult) => {
       const dataList = this[list];
       const taskIndex = dataList.indexOf(task);
-      if (result.delete) {
-        dataList.splice(taskIndex, 1);
-      } else {
-        dataList[taskIndex] = task;
+      //not cancel situation
+      if (result !== undefined) {
+        if (result.delete) {
+          //delete
+          dataList.splice(taskIndex, 1);
+        } else {
+          //change
+          dataList[taskIndex] = task;
+        }
       }
     });
   }
@@ -61,6 +66,7 @@ export class AppComponent {
       },
     });
     dialogRef.afterClosed().subscribe((result: TaskDialogResult) => {
+      //not cancel situation
       if (result !== undefined) {
         this.todo.push(result.task);
       }
