@@ -6,6 +6,7 @@ import {
   TaskDialogComponent,
   TaskDialogResult,
 } from './task-dialog/task-dialog.component';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -13,14 +14,13 @@ import {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  todo: Task[] = [
-    { title: 'ref', description: 'ffesfse' },
-    { title: '32r32', description: 'r43t4wat43' },
-  ];
-  inProgress: Task[] = [];
-  done: Task[] = [];
+  todo = this.store.collection('todo').valueChanges({ idField: 'id' });
+  inProgress = this.store
+    .collection('inProgress')
+    .valueChanges({ idField: 'id' });
+  done = this.store.collection('done').valueChanges({ idField: 'id' });
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private store: AngularFirestore) {}
 
   drop(event: CdkDragDrop<Task[]>): void {
     if (event.previousContainer === event.container) {
