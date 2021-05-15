@@ -14,15 +14,17 @@
         cdkDropList
         id="todo"
         #todoList="cdkDropList"
-        [cdkDropListData]="todo"
+        [cdkDropListData]="todo | async"
         (cdkDropListDropped)="drop($event)"
         [cdkDropListConnectedTo]="[inProgressList, doneList]"
       >
-        <p class="empty-label" *ngIf="todo.length === 0">Emtpy list</p>
+        <p class="empty-label" *ngIf="(todo | async)?.length === 0">
+          Emtpy list
+        </p>
         <app-task
           cdkDrag
           (edit)="edit('todo', $event)"
-          *ngFor="let task of todo"
+          *ngFor="let task of todo | async"
           [task]="task"
         ></app-task>
       </mat-card>
@@ -33,15 +35,17 @@
         cdkDropList
         id="inProgress"
         #inProgressList="cdkDropList"
-        [cdkDropListData]="inProgress"
+        [cdkDropListData]="inProgress | async"
         (cdkDropListDropped)="drop($event)"
         [cdkDropListConnectedTo]="[todoList, doneList]"
       >
-        <p class="empty-label" *ngIf="inProgress.length === 0">Emtpy list</p>
+        <p class="empty-label" *ngIf="(inProgress | async)?.length === 0">
+          Emtpy list
+        </p>
         <app-task
           cdkDrag
           (edit)="edit('inProgress', $event)"
-          *ngFor="let task of inProgress"
+          *ngFor="let task of inProgress | async"
           [task]="task"
         ></app-task>
       </mat-card>
@@ -52,15 +56,17 @@
         cdkDropList
         id="done"
         #doneList="cdkDropList"
-        [cdkDropListData]="done"
+        [cdkDropListData]="done | async"
         (cdkDropListDropped)="drop($event)"
         [cdkDropListConnectedTo]="[todoList, inProgressList]"
       >
-        <p class="empty-label" *ngIf="done.length === 0">Emtpy list</p>
+        <p class="empty-label" *ngIf="(done | async)?.length === 0">
+          Emtpy list
+        </p>
         <app-task
           cdkDrag
           (edit)="edit('done', $event)"
-          *ngFor="let task of done"
+          *ngFor="let task of done | async"
           [task]="task"
         ></app-task>
       </mat-card>
